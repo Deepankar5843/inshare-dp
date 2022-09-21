@@ -7,6 +7,11 @@ const cors = require('cors');
 
 const connectDB = require('./config/db');
 connectDB();
+
+const corsOptions = {
+    origin: process.env.ALLOWED_CLIENTS.split(',')
+}
+app.use(cors(corsOptions));
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
 app.set('views', path.join(__dirname, '/views'));
